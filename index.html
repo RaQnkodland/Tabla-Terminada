@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tabla Periódica de los Elementos</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/x-icon" href="quimico.png">
+</head>
+<body>
+<section id="start-screen" class="start-screen">
+<div class="start-content">
+<p class="start-kicker">Descubre la ciencia</p>
+<h1>Tabla Periódica<br>de los Elementos</h1>
+<p class="start-description">Explora los 118 elementos y conoce sus propiedades, categorías y características.</p>
+<div class="mini-table" aria-hidden="true">
+<span class="mini-cell mini-green">H</span><span class="mini-cell mini-orange">He</span>
+<span class="mini-cell mini-red">Li</span><span class="mini-cell mini-blue">Be</span>
+<span class="mini-cell mini-lime">B</span><span class="mini-cell mini-green">C</span>
+<span class="mini-cell mini-green">N</span><span class="mini-cell mini-green">O</span>
+<span class="mini-cell mini-pink">F</span><span class="mini-cell mini-orange">Ne</span>
+</div>
+<p class="element-count">118 elementos disponibles</p>
+<button id="start-btn" class="start-btn">Iniciar exploración <span aria-hidden="true">→</span></button>
+</div>
+</section>
+
+<main id="app" class="app" hidden>
+<section class="table-wrapper">
+<header class="table-heading">
+<p class="table-kicker">Atlas químico · 118 elementos</p>
+<h1>Tabla Periódica <span>de los Elementos</span></h1>
+<p class="table-subtitle">Explora propiedades, familias y estados de la materia.</p>
+</header>
+<div id="periodic-table" class="periodic-table"></div>
+<div id="legend" class="legend"></div>
+</section>
+
+<section class="controls">
+<label for="search">Buscar:</label>
+<input id="search" type="text" placeholder="Nombre, símbolo o número atómico">
+<button id="search-btn">Buscar</button>
+<button id="clear-btn">Limpiar</button>
+<button id="compare-btn">Comparar</button>
+<button id="favorite-btn">☆ Favorito</button>
+<button id="favorites-filter-btn">★ Mis favoritos</button>
+<button id="quiz-btn">Quiz</button>
+<button id="theme-btn">Tema claro</button>
+<button id="sound-btn" aria-label="Silenciar sonidos">Sonido: activado</button>
+<button id="home-btn" aria-label="Volver a la pantalla de inicio">Inicio</button>
+<select id="scale">
+<option>Colores: categorías</option>
+<option>Escala: masa</option>
+<option>Escala: número atómico</option>
+<option>Estado físico</option>
+</select>
+</section>
+
+<div id="results" class="results" hidden></div>
+<div id="info" class="info">Haz clic en un elemento para ver su información.</div>
+
+<audio id="hover-sound" preload="auto">
+<source src="hover_sonido.wav" type="audio/wav">
+</audio>
+</main>
+
+<div id="preview" class="preview" hidden></div>
+
+<div id="details-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-content" hidden>
+<div class="modal">
+<button id="modal-close" class="modal-close" aria-label="Cerrar detalles">×</button>
+<div id="modal-content"></div>
+</div>
+</div>
+
+<div id="comparison-modal" class="modal-backdrop" role="dialog" aria-modal="true" hidden>
+<div class="modal comparison-modal">
+<button id="comparison-close" class="modal-close" aria-label="Cerrar comparación">×</button>
+<div id="comparison-content"></div>
+</div>
+</div>
+
+<div id="quiz-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="quiz-title" hidden>
+<div class="modal quiz-modal">
+<button id="quiz-close" class="modal-close" aria-label="Cerrar quiz">×</button>
+<div id="quiz-content"></div>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
