@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,7 +28,6 @@
 <main id="app" class="app" hidden>
 <section class="table-wrapper">
 <header class="table-heading">
-<p class="table-kicker">Atlas químico · 118 elementos</p>
 <h1>Tabla Periódica <span>de los Elementos</span></h1>
 <p class="table-subtitle">Explora propiedades, familias y estados de la materia.</p>
 </header>
@@ -38,23 +36,28 @@
 </section>
 
 <section class="controls">
+<div class="control-search">
 <label for="search">Buscar:</label>
 <input id="search" type="text" placeholder="Nombre, símbolo o número atómico">
 <button id="search-btn">Buscar</button>
 <button id="clear-btn">Limpiar</button>
-<button id="compare-btn">Comparar</button>
-<button id="favorite-btn">☆ Favorito</button>
-<button id="favorites-filter-btn">★ Mis favoritos</button>
-<button id="quiz-btn">Quiz</button>
-<button id="theme-btn">Tema claro</button>
-<button id="sound-btn" aria-label="Silenciar sonidos">Sonido: activado</button>
-<button id="home-btn" aria-label="Volver a la pantalla de inicio">Inicio</button>
+</div>
+<div class="control-actions">
 <select id="scale">
 <option>Colores: categorías</option>
 <option>Escala: masa</option>
 <option>Escala: número atómico</option>
 <option>Estado físico</option>
 </select>
+<button id="compare-btn">Comparar</button>
+<button id="favorite-btn">☆ Favorito</button>
+<button id="favorites-filter-btn">★ Mis favoritos</button>
+<button id="quiz-btn">Quiz</button>
+<button id="theme-btn">Tema claro</button>
+<button id="sound-btn" aria-label="Silenciar sonidos">Sonido: activado</button>
+<button id="sound-style-btn" aria-label="Cambiar sonido de interacción">Sonido hover 1</button>
+<button id="home-btn" aria-label="Volver a la pantalla de inicio">Inicio</button>
+</div>
 </section>
 
 <div id="results" class="results" hidden></div>
@@ -62,6 +65,9 @@
 
 <audio id="hover-sound" preload="auto">
 <source src="hover_sonido.wav" type="audio/wav">
+</audio>
+<audio id="hover-sound-2" preload="auto">
+<source src="hover_sonido2.wav" type="audio/wav">
 </audio>
 </main>
 
@@ -91,3 +97,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
