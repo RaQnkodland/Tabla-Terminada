@@ -103,7 +103,9 @@ const detailsModal=document.getElementById('details-modal');
 const comparisonModal=document.getElementById('comparison-modal');
 const quizModal=document.getElementById('quiz-modal');
 const sonidoHover=document.getElementById('hover-sound');
+const sonidoHover2=document.getElementById('hover-sound-2');
 const soundBtn=document.getElementById('sound-btn');
+const soundStyleBtn=document.getElementById('sound-style-btn');
 const startScreen=document.getElementById('start-screen');
 const app=document.getElementById('app');
 const startBtn=document.getElementById('start-btn');
@@ -121,8 +123,11 @@ let darkTheme=true;
 const elementNodes=new Map();
 
 sonidoHover.volume=.3;
+sonidoHover2.volume=.3;
 let sonidoMuteado=localStorage.getItem('sonido-muteado')==='true';
 sonidoHover.muted=sonidoMuteado;
+sonidoHover2.muted=sonidoMuteado;
+let sonidoSeleccionado=localStorage.getItem('sonido-seleccionado')==='2'?2:1;
 
 function actualizarBotonSonido(){
 soundBtn.textContent=sonidoMuteado?'Sonido: silenciado':'Sonido: activado';
@@ -133,8 +138,20 @@ soundBtn.classList.toggle('active',sonidoMuteado);
 function alternarSonido(){
 sonidoMuteado=!sonidoMuteado;
 sonidoHover.muted=sonidoMuteado;
+sonidoHover2.muted=sonidoMuteado;
 localStorage.setItem('sonido-muteado',sonidoMuteado);
 actualizarBotonSonido();
+}
+
+function actualizarBotonEstiloSonido(){
+soundStyleBtn.textContent=`Sonido hover ${sonidoSeleccionado}`;
+soundStyleBtn.setAttribute('aria-label',`Usar sonido hover ${sonidoSeleccionado===1?2:1}`);
+}
+
+function alternarEstiloSonido(){
+sonidoSeleccionado=sonidoSeleccionado===1?2:1;
+localStorage.setItem('sonido-seleccionado',sonidoSeleccionado);
+actualizarBotonEstiloSonido();
 }
 
 try{
@@ -158,9 +175,10 @@ return'#'+rojo.toString(16).padStart(2,'0')+'70'+azul.toString(16).padStart(2,'0
 }
 
 function playSound(type){
-if(type!=='hover')return;
-sonidoHover.currentTime=0;
-sonidoHover.play().catch(()=>{});
+if(type!=='hover'&&type!=='click')return;
+const sonido=sonidoSeleccionado===1?sonidoHover:sonidoHover2;
+sonido.currentTime=0;
+sonido.play().catch(()=>{});
 }
 
 const movimientoReducido=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -528,10 +546,12 @@ favoritesFilterBtn.onclick=alternarFiltroFavoritos;
 document.getElementById('compare-btn').onclick=alternarComparacion;
 document.getElementById('theme-btn').onclick=cambiarTema;
 soundBtn.onclick=alternarSonido;
+soundStyleBtn.onclick=alternarEstiloSonido;
 scale.onchange=actualizarEstilos;
 search.oninput=actualizarResultados;
 startBtn.onclick=iniciarAplicacion;
 document.addEventListener('pointermove',moverFondo,{passive:true});
+document.addEventListener('click',()=>playSound('click'));
 
 search.onkeydown=e=>{
 if(e.key==='Enter')buscarElemento();
@@ -571,5 +591,9 @@ quizModal.hidden=true;
 
 crearTabla();
 crearLeyenda();
+actualizarEstilos();
+actualizarBotonSonido();
+actualizarBotonEstiloSonido();
+
 actualizarEstilos();
 actualizarBotonSonido();
